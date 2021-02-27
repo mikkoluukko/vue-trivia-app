@@ -45,8 +45,15 @@
         <option value="difficulty=hard">Hard</option>
       </select>
     </div>
+    <div>
+      <select name="trivia_mode" v-model="selectedMode">
+        <option value="mode=normal">Normal Mode</option>
+        <option value="mode=speed">Speed Mode</option>
+      </select>
+    </div>
 
-    <button @click="startGame()">START</button>
+    <button @click="startGame()">START GAME</button>
+
     
   </div>
 </template>
@@ -61,6 +68,7 @@ export default {
       selectedAmount: '10',
       selectedCategory: '',
       selectedDifficulty: '',
+      selectedMode: 'mode=normal'
     }
     
   },
@@ -69,7 +77,8 @@ export default {
       let amount = this.selectedAmount;
       let category = `&${this.selectedCategory}`;
       let difficulty = `&${this.selectedDifficulty}`;
-      this.loadQuestions(amount, category, difficulty);
+      let mode = this.selectedMode;
+      this.loadQuestions(amount, category, difficulty, mode);
     }
   }
 }

@@ -17,18 +17,24 @@
           {{ answer }}
         </b-list-group-item>
       </b-list-group>
-
-      <b-button variant="success" @click="nextQuestion" :disabled="answered === false">
-        Next
-      </b-button>
+      
+      <CountdownTimer
+        ref="countdownTimer"
+        :handleTimerFull="handleTimerFull"
+        :currentQuestion="currentQuestion"
+      />
     </b-jumbotron>
   </div>
 </template>
 
 <script>
 import _ from 'lodash';
+import CountdownTimer from './CountdownTimer';
 
 export default {
+  components: {
+    CountdownTimer,
+  },
   props: {
     currentQuestion: Object,
     nextQuestion: Function,
@@ -57,6 +63,11 @@ export default {
       handler() {
         this.selectedIndex = null;
         this.answered = false;
+        // This is to prevent the unneccessary call on the first question
+        // when $refs.countdownTimer is still undefined
+        if (this.$refs.countdownTimer != undefined) {
+          this.$refs.countdownTimer.startTimer();
+        }
       },
     },
   },
@@ -75,6 +86,7 @@ export default {
       return answerClass;
     },
     selectAnswer(index) {
+      this.$refs.countdownTimer.stopTimer();
       this.selectedIndex = index;
       this.answered = true;
       this.checkAnswer();
@@ -87,8 +99,13 @@ export default {
       if (this.selectedIndex === this.correctIndex) {
         isCorrect = true;
       }
-
       this.increment(isCorrect);
+      setTimeout(() => {
+        this.nextQuestion()
+      }, 700);
+    },
+    handleTimerFull() {
+      this.selectAnswer(null);      
     },
   },
 };
@@ -102,10 +119,6 @@ export default {
 .list-group-item:hover {
   background: #eee;
   cursor: pointer;
-}
-
-.btn {
-  margin: 5px;
 }
 
 .selected {

@@ -14,9 +14,15 @@
             :loadQuestions="loadQuestions"
           />
           <QuestionBox
-            v-if="questions.length && !isGameOver"
+            v-if="questions.length && !isGameOver && isNormalMode"
             :currentQuestion="questions[index]"
-            :next="next"
+            :nextQuestion="nextQuestion"
+            :increment="increment"
+          />
+          <QuestionBoxSpeedMode
+            v-if="questions.length && !isGameOver && !isNormalMode"
+            :currentQuestion="questions[index]"
+            :nextQuestion="nextQuestion"
             :increment="increment"
           />
           <ScoreScreen 
@@ -33,6 +39,7 @@
 import StartScreen from './components/StartScreen';
 import Header from './components/Header';
 import QuestionBox from './components/QuestionBox';
+import QuestionBoxSpeedMode from './components/QuestionBoxSpeedMode';
 import ScoreScreen from './components/ScoreScreen';
 
 export default {
@@ -41,6 +48,7 @@ export default {
     StartScreen,
     Header,
     QuestionBox,
+    QuestionBoxSpeedMode,
     ScoreScreen,
   },
   data() {
@@ -49,19 +57,28 @@ export default {
       index: 0,
       questionsCorrect: 0,
       questionsAnswered: 0,
+      isNormalMode: true,
       isGameOver: false,
     }
   },
   methods: {
-    loadQuestions(amount, category, difficulty) {
+    loadQuestions(amount, category, difficulty, mode) {
+      this.initGame(mode);
       fetch(`https://opentdb.com/api.php?amount=${amount}${category}${difficulty}`, {
         method: 'get',
       }).then((response) => {
         return response.json();
       })
       .then((jsonData) => {
-        this.questions = jsonData.results
+        this.questions = jsonData.results;
       });
+    },
+    initGame(mode) {
+      if (mode === "mode=normal") {
+        this.isNormalMode = true;
+      } else {
+        this.isNormalMode = false;
+      }
     },
     resetGame() {
       this.questions = [];
@@ -70,13 +87,12 @@ export default {
       this.questionsAnswered = 0;
       this.isGameOver = false;
     },
-    next() {
+    nextQuestion() {
       if (this.index < this.questions.length - 1) {
         this.index++;
       } else {
         this.isGameOver = true;
-      }
-      
+      }      
     },
     increment(isCorrect) {
       if (isCorrect) {
