@@ -38,6 +38,7 @@ export default {
     currentQuestion: Object,
     nextQuestion: Function,
     increment: Function,
+    addSelectedAnswer: Function,
   },
   data() {
     return {
@@ -92,8 +93,8 @@ export default {
       if (this.selectedIndex === this.correctIndex) {
         isCorrect = true;
       }
-
       this.increment(isCorrect);
+      this.addSelectedAnswer(this.answers[this.selectedIndex]);
     },
   },
 };

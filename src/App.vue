@@ -18,16 +18,20 @@
             :currentQuestion="questions[index]"
             :nextQuestion="nextQuestion"
             :increment="increment"
+            :addSelectedAnswer="addSelectedAnswer"
           />
           <QuestionBoxSpeedMode
             v-if="questions.length && !isGameOver && !isNormalMode"
             :currentQuestion="questions[index]"
             :nextQuestion="nextQuestion"
             :increment="increment"
+            :addSelectedAnswer="addSelectedAnswer"
           />
           <ScoreScreen 
             v-if="isGameOver"
             :score="questionsCorrect * 10"
+            :questions="questions"
+            :selectedAnswers="selectedAnswers"
           />
           <Footer 
             v-if="questions.length" 
@@ -60,6 +64,7 @@ export default {
   data() {
     return {
       questions: [],
+      selectedAnswers: [],
       index: 0,
       questionsCorrect: 0,
       questionsAnswered: 0,
@@ -105,6 +110,9 @@ export default {
         this.questionsCorrect++;
       }
       this.questionsAnswered++;
+    },
+    addSelectedAnswer(selectedAnswer) {
+      this.selectedAnswers.push(selectedAnswer);
     }
   },
 };

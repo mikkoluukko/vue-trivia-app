@@ -5,7 +5,7 @@
         {{ currentQuestion.question }}
       </template>
 
-      <hr class="my-4" />
+      <hr class="my-2" />
       <b-list-group>
         <b-list-group-item
           class="my-1"
@@ -40,6 +40,7 @@ export default {
     currentQuestion: Object,
     nextQuestion: Function,
     increment: Function,
+    addSelectedAnswer: Function,
   },
   data() {
     return {
@@ -101,6 +102,7 @@ export default {
         isCorrect = true;
       }
       this.increment(isCorrect);
+      this.addSelectedAnswer(this.answers[this.selectedIndex]);
       setTimeout(() => {
         this.nextQuestion()
       }, 600);
