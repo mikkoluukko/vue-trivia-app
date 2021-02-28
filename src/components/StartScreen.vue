@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-img :src="logo" fluid alt="Vue Trivia App Logo"></b-img>
+    <b-img class="my-4" :src="logo" fluid alt="Vue Trivia App Logo"></b-img>
     <b-jumbotron bg-variant="light" border-variant="dark">
       <div class="my-2">
         <b-form-select name="trivia_amount" v-model="selectedAmount">

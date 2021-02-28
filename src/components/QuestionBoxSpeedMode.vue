@@ -103,7 +103,7 @@ export default {
       this.increment(isCorrect);
       setTimeout(() => {
         this.nextQuestion()
-      }, 700);
+      }, 600);
     },
     handleTimerFull() {
       this.selectAnswer(null);      

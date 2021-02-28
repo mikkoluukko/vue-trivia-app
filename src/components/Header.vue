@@ -1,13 +1,9 @@
 <template>
   <div>
-    <!-- <a href=""><h1 @click="resetGame">Vue Trivia Game</h1></a> -->
-    <b-nav tabs>
-      <!-- <b-nav-item active @click="resetGame">Vue Trivia Game</b-nav-item> -->
-      <b-nav-item>Score: {{ questionsCorrect * 10 }}</b-nav-item>
-      <b-nav-item v-if="questionsTotal > 0">
-        Question: {{ currentQuestion + 1 }} / {{ questionsTotal }}
-      </b-nav-item>
-    </b-nav>
+    <b-row class="justify-content-md-center mt-4">
+      <b-col col lg="2">Score: {{ questionsCorrect * 10 }}</b-col>
+      <b-col col lg="2">Question: {{ currentQuestion + 1 }} / {{ questionsTotal }}</b-col>
+    </b-row>
   </div>
 </template>
 
@@ -22,5 +18,7 @@ export default {
 </script>
 
 <style>
-
+.col {
+  font-size: 30px;
+}
 </style>

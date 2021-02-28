@@ -31,7 +31,7 @@ export default {
           clearInterval(this.timer);
           this.handleTimerFull();     
         } 
-      }, 25);
+      }, 20);
     },
     stopTimer() {
       clearInterval(this.timer);
@@ -43,6 +43,5 @@ export default {
 <style>
 .progress-bar {
   transition: none;
-  /* height: 2rem; */
 }
 </style>
