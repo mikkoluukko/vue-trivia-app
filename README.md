@@ -1,6 +1,11 @@
-# vue-trivia-app
+# Vue Trivia App
 
-## Project setup
+## About
+The goal of this project was to create a trivia game using Vue and the [Open Trivia DB API](https://opentdb.com/).
+
+## Generic Vue app instructions
+
+### Project setup
 ```
 npm install
 ```
