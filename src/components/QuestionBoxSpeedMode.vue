@@ -1,6 +1,6 @@
 <template>
   <div class="question-box-container">
-    <b-jumbotron>
+    <b-jumbotron class=my-4 bg-variant="light" border-variant="dark">
       <template #lead>
         {{ currentQuestion.question }}
       </template>
@@ -8,6 +8,7 @@
       <hr class="my-4" />
       <b-list-group>
         <b-list-group-item
+          class="my-1"
           v-for="(answer, index) in answers"
           :key="index"
           @click="selectAnswer(index)"
@@ -116,13 +117,13 @@ export default {
   margin-bottom: 15px;
 }
 
+.list-group-item {
+  border: 1px solid gray;
+}
+
 .list-group-item:hover {
   background: #eee;
   cursor: pointer;
-}
-
-.selected {
-  background-color: lightblue;
 }
 
 .correct {

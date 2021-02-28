@@ -1,13 +1,14 @@
 <template>
   <div class="question-box-container">
-    <b-jumbotron>
+    <b-jumbotron class=my-4 bg-variant="light" border-variant="dark">
       <template #lead>
         {{ currentQuestion.question }}
       </template>
 
-      <hr class="my-4" />
+      <hr class="my-2" />
       <b-list-group>
         <b-list-group-item
+          class="my-1"
           v-for="(answer, index) in answers"
           :key="index"
           @click="selectAnswer(index)"
@@ -18,7 +19,11 @@
         </b-list-group-item>
       </b-list-group>
 
-      <b-button variant="success" @click="nextQuestion" :disabled="answered === false">
+      <b-button 
+        variant="success" 
+        @click="nextQuestion" 
+        :disabled="answered === false"
+      >
         Next
       </b-button>
     </b-jumbotron>
@@ -99,6 +104,10 @@ export default {
   margin-bottom: 15px;
 }
 
+.list-group-item {
+  border: 1px solid gray;
+}
+
 .list-group-item:hover {
   background: #eee;
   cursor: pointer;
@@ -106,10 +115,6 @@ export default {
 
 .btn {
   margin: 5px;
-}
-
-.selected {
-  background-color: lightblue;
 }
 
 .correct {

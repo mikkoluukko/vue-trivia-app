@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <Header 
-      :resetGame="resetGame"
+      v-if="questions.length && !isGameOver"
       :questionsCorrect="questionsCorrect"
       :currentQuestion="index"
       :questionsTotal="questions.length"
     />
     <b-container class="bv-example-row">
-      <b-row>
-        <b-col sm="6" offset="3">
+      <b-row align-h="center">
+        <b-col sm="9">
           <StartScreen 
             v-if="questions.length === 0" 
             :loadQuestions="loadQuestions"
@@ -29,6 +29,10 @@
             v-if="isGameOver"
             :score="questionsCorrect * 10"
           />
+          <Footer 
+            v-if="questions.length" 
+            :resetGame="resetGame"
+          />
         </b-col>
       </b-row>
     </b-container>
@@ -38,6 +42,7 @@
 <script>
 import StartScreen from './components/StartScreen';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import QuestionBox from './components/QuestionBox';
 import QuestionBoxSpeedMode from './components/QuestionBoxSpeedMode';
 import ScoreScreen from './components/ScoreScreen';
@@ -47,6 +52,7 @@ export default {
   components: {
     StartScreen,
     Header,
+    Footer,
     QuestionBox,
     QuestionBoxSpeedMode,
     ScoreScreen,
@@ -111,6 +117,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
