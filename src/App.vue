@@ -93,6 +93,7 @@ export default {
     },
     resetGame() {
       this.questions = [];
+      this.selectedAnswers = [];
       this.index = 0;
       this.questionsCorrect = 0;
       this.questionsAnswered = 0;
