@@ -21,7 +21,7 @@
 
       <CountdownTimer
         ref="countdownTimer"
-        :handleTimerFull="handleTimerFull"
+        :selectAnswer="selectAnswer"
         :currentQuestion="currentQuestion"
       />
     </b-jumbotron>
@@ -65,6 +65,7 @@ export default {
       handler() {
         this.selectedIndex = null;
         this.isAnswered = false;
+        this.componentKey = !this.componentKey;
         // This is to prevent the unneccessary call on the first question
         // when $refs.countdownTimer is still undefined
         if (this.$refs.countdownTimer != undefined) {
@@ -90,7 +91,7 @@ export default {
     selectAnswer(index) {
       this.$refs.countdownTimer.stopTimer();
       this.selectedIndex = index;
-      this.isisAnswered = true;
+      this.isAnswered = true;
       this.checkAnswer();
     },
     checkAnswer() {
@@ -107,8 +108,8 @@ export default {
         this.nextQuestion();
       }, 600);
     },
-    handleTimerFull() {
-      this.selectAnswer(null);
+    handleReset() {
+      this.$refs.countdownTimer.stopTimer();
     },
   },
 };

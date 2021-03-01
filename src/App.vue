@@ -21,6 +21,7 @@
             :addSelectedAnswer="addSelectedAnswer"
           />
           <QuestionBoxSpeedMode
+            ref="questionBoxSpeedMode"
             v-if="questions.length && !isGameOver && !isNormalMode"
             :currentQuestion="questions[index]"
             :nextQuestion="nextQuestion"
@@ -93,12 +94,16 @@ export default {
       }
     },
     resetGame() {
+      this.isGameOver = false;
       this.questions = [];
       this.selectedAnswers = [];
       this.index = 0;
       this.questionsCorrect = 0;
       this.questionsAnswered = 0;
-      this.isGameOver = false;
+      // In speed mode the countdown timer has to be stopped upon reset
+      if (!this.isNormalMode && this.$refs.questionBoxSpeedMode != undefined) {
+        this.$refs.questionBoxSpeedMode.handleReset();
+      }
     },
     nextQuestion() {
       if (this.index < this.questions.length - 1) {

@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-row class="justify-content-md-center mt-4">
-      <b-col col lg="2"> Score: {{ questionsCorrect * 10 }} </b-col>
-      <b-col col lg="2">
+      <b-col col sm="2"> Score: {{ questionsCorrect * 10 }} </b-col>
+      <b-col col sm="3">
         Question: {{ currentQuestion + 1 }} / {{ questionsTotal }}
       </b-col>
     </b-row>
