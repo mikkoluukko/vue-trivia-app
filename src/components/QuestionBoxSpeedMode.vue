@@ -1,6 +1,6 @@
 <template>
   <div class="question-box-container">
-    <b-jumbotron class=my-4 bg-variant="light" border-variant="dark">
+    <b-jumbotron class="my-4" bg-variant="light" border-variant="dark">
       <template #lead>
         {{ currentQuestion.question }}
       </template>
@@ -13,12 +13,12 @@
           :key="index"
           @click="selectAnswer(index)"
           :class="[answerClass(index)]"
-          :disabled="answered === true"
+          :disabled="isAnswered === true"
         >
           {{ answer }}
         </b-list-group-item>
       </b-list-group>
-      
+
       <CountdownTimer
         ref="countdownTimer"
         :handleTimerFull="handleTimerFull"
@@ -46,7 +46,7 @@ export default {
     return {
       selectedIndex: null,
       correctIndex: null,
-      answered: false,
+      isAnswered: false,
     };
   },
   computed: {
@@ -64,7 +64,7 @@ export default {
       immediate: true,
       handler() {
         this.selectedIndex = null;
-        this.answered = false;
+        this.isAnswered = false;
         // This is to prevent the unneccessary call on the first question
         // when $refs.countdownTimer is still undefined
         if (this.$refs.countdownTimer != undefined) {
@@ -76,10 +76,10 @@ export default {
   methods: {
     answerClass(index) {
       let answerClass = '';
-      if (this.answered && this.correctIndex === index) {
+      if (this.isAnswered && this.correctIndex === index) {
         answerClass = 'correct';
       } else if (
-        this.answered &&
+        this.isAnswered &&
         this.selectedIndex === index &&
         this.correct_answer !== index
       ) {
@@ -90,7 +90,7 @@ export default {
     selectAnswer(index) {
       this.$refs.countdownTimer.stopTimer();
       this.selectedIndex = index;
-      this.answered = true;
+      this.isisAnswered = true;
       this.checkAnswer();
     },
     checkAnswer() {
@@ -104,11 +104,11 @@ export default {
       this.increment(isCorrect);
       this.addSelectedAnswer(this.answers[this.selectedIndex]);
       setTimeout(() => {
-        this.nextQuestion()
+        this.nextQuestion();
       }, 600);
     },
     handleTimerFull() {
-      this.selectAnswer(null);      
+      this.selectAnswer(null);
     },
   },
 };

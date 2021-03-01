@@ -10,10 +10,8 @@
 export default {
   props: {
     resetGame: Function,
-  }  
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -11,24 +11,24 @@
 export default {
   props: {
     score: Number,
-    questions: Object,
-    selectedAnswers: Object,
-  }, 
+    questions: Array,
+    selectedAnswers: Array,
+  },
   data() {
     return {
-      items: []      
-    }
+      items: [],
+    };
   },
   mounted() {
     for (const [index, question] of this.questions.entries()) {
       this.items.push({
-        question: question.question, 
-        correctAnswer: question.correct_answer, 
-        yourAnswer: this.selectedAnswers[index]
+        question: question.question,
+        correctAnswer: question.correct_answer,
+        yourAnswer: this.selectedAnswers[index],
       });
     }
-  }
-}
+  },
+};
 </script>
 
 <style>

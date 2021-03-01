@@ -1,6 +1,6 @@
 <template>
   <div>
-      <b-progress class="mt-2" :max="max" height="2rem">
+    <b-progress class="mt-2" :max="max" height="2rem">
       <b-progress-bar :value="value" variant="danger"></b-progress-bar>
     </b-progress>
   </div>
@@ -16,28 +16,28 @@ export default {
     return {
       timer: null,
       value: 0,
-      max: 100,      
-    }
+      max: 100,
+    };
   },
   mounted() {
-    this.startTimer();  
+    this.startTimer();
   },
   methods: {
     startTimer() {
-      this.value = 0;      
+      this.value = 0;
       this.timer = setInterval(() => {
         this.value += 0.5;
         if (this.value >= 100) {
           clearInterval(this.timer);
-          this.handleTimerFull();     
-        } 
+          this.handleTimerFull();
+        }
       }, 20);
     },
     stopTimer() {
       clearInterval(this.timer);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>

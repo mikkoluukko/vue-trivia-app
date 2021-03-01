@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header 
+    <Header
       v-if="questions.length && !isGameOver"
       :questionsCorrect="questionsCorrect"
       :currentQuestion="index"
@@ -9,8 +9,8 @@
     <b-container class="bv-example-row">
       <b-row align-h="center">
         <b-col sm="9">
-          <StartScreen 
-            v-if="questions.length === 0" 
+          <StartScreen
+            v-if="questions.length === 0"
             :loadQuestions="loadQuestions"
           />
           <QuestionBox
@@ -27,16 +27,13 @@
             :increment="increment"
             :addSelectedAnswer="addSelectedAnswer"
           />
-          <ScoreScreen 
+          <ScoreScreen
             v-if="isGameOver"
             :score="questionsCorrect * 10"
             :questions="questions"
             :selectedAnswers="selectedAnswers"
           />
-          <Footer 
-            v-if="questions.length" 
-            :resetGame="resetGame"
-          />
+          <Footer v-if="questions.length" :resetGame="resetGame" />
         </b-col>
       </b-row>
     </b-container>
@@ -70,22 +67,26 @@ export default {
       questionsAnswered: 0,
       isNormalMode: true,
       isGameOver: false,
-    }
+    };
   },
   methods: {
     loadQuestions(amount, category, difficulty, mode) {
       this.initGame(mode);
-      fetch(`https://opentdb.com/api.php?amount=${amount}${category}${difficulty}`, {
-        method: 'get',
-      }).then((response) => {
-        return response.json();
-      })
-      .then((jsonData) => {
-        this.questions = jsonData.results;
-      });
+      fetch(
+        `https://opentdb.com/api.php?amount=${amount}${category}${difficulty}`,
+        {
+          method: 'get',
+        }
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((jsonData) => {
+          this.questions = jsonData.results;
+        });
     },
     initGame(mode) {
-      if (mode === "mode=normal") {
+      if (mode === 'mode=normal') {
         this.isNormalMode = true;
       } else {
         this.isNormalMode = false;
@@ -104,7 +105,7 @@ export default {
         this.index++;
       } else {
         this.isGameOver = true;
-      }      
+      }
     },
     increment(isCorrect) {
       if (isCorrect) {
@@ -114,7 +115,7 @@ export default {
     },
     addSelectedAnswer(selectedAnswer) {
       this.selectedAnswers.push(selectedAnswer);
-    }
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="question-box-container">
-    <b-jumbotron class=my-4 bg-variant="light" border-variant="dark">
+    <b-jumbotron class="my-4" bg-variant="light" border-variant="dark">
       <template #lead>
         {{ currentQuestion.question }}
       </template>
@@ -13,16 +13,16 @@
           :key="index"
           @click="selectAnswer(index)"
           :class="[answerClass(index)]"
-          :disabled="answered === true"
+          :disabled="isAnswered === true"
         >
           {{ answer }}
         </b-list-group-item>
       </b-list-group>
 
-      <b-button 
-        variant="success" 
-        @click="nextQuestion" 
-        :disabled="answered === false"
+      <b-button
+        variant="success"
+        @click="nextQuestion"
+        :disabled="isAnswered === false"
       >
         Next
       </b-button>
@@ -44,7 +44,7 @@ export default {
     return {
       selectedIndex: null,
       correctIndex: null,
-      answered: false,
+      isAnswered: false,
     };
   },
   computed: {
@@ -62,17 +62,17 @@ export default {
       immediate: true,
       handler() {
         this.selectedIndex = null;
-        this.answered = false;
+        this.isAnswered = false;
       },
     },
   },
   methods: {
     answerClass(index) {
       let answerClass = '';
-      if (this.answered && this.correctIndex === index) {
+      if (this.isAnswered && this.correctIndex === index) {
         answerClass = 'correct';
       } else if (
-        this.answered &&
+        this.isAnswered &&
         this.selectedIndex === index &&
         this.correct_answer !== index
       ) {
@@ -82,7 +82,7 @@ export default {
     },
     selectAnswer(index) {
       this.selectedIndex = index;
-      this.answered = true;
+      this.isAnswered = true;
       this.checkAnswer();
     },
     checkAnswer() {
