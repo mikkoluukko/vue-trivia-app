@@ -1,7 +1,17 @@
 # Vue Trivia App
-
+## Table of contents
+- [About](#about)
+- [Description](#description)
+  - [Start Screen](#start-screen)
+  - [Header](#header)
+  - [Footer](#footer)
+  - [Question Box](#question-box)
+  - [Score Screen](#score-screen)
+- [Usage](#usage)
+- [Generic Vue instructions](#generic-vue-instructions)
 ## About
-The goal of this project was to create a trivia game using Vue and the [Open Trivia DB API](https://opentdb.com/).
+The goal of this project was to create a trivia game using Vue and the 
+[Open Trivia DB API](https://opentdb.com/).
 
 The project uses [Bootstrap Vue](https://bootstrap-vue.org/).
 
@@ -16,22 +26,46 @@ The game consists of the following main components:
 - Score Screen
 
 ### Start Screen
-This is the screen that the user is first presented with. It has question amount, category and difficulty options that result in the corresponding questions to be fetched from the Open Trivia DB API. It also has an option to choose between a normal game mode or a speed mode.
+This is the screen that the user is first presented with. It has question 
+amount, category and difficulty options that result in the corresponding 
+questions to be fetched from the Open Trivia DB API. It also has an option 
+to choose between a normal game mode or a speed mode.
+![start screen](https://github.com/mikkoluukko/vue-trivia-app/blob/master/readme-images/start-screen.png)
 
 ### Header
-The header is displayed during the gameplay (i.e. it is not visible in the start screen or in the score screen). It is used to display the current score and the number of the current question.
+The header is displayed during the gameplay (i.e. it is not visible in the 
+start screen or in the score screen). It is used to display the current score 
+and the number of the current question.
 
 ### Footer
-The footer is displayed in all other screens except the start screen. It is used to display a "Back to start screen" button which resets the game and returns the user to the start screen.
+The footer is displayed in all other screens except the start screen. It is 
+used to display a "Back to start screen" button which resets the game and 
+returns the user to the start screen.
 
 ### Question Box
-There are two separate versions of the question box. Both versions include a box in the middle of the screen. The current question is displayed in the top part of the box and the answer options in the middle part as individual clickable boxes. In normal mode the bottom part of the box has a "Next" button that can be clicked after selecting an answer and it will load the next question. In speed mode the bottom part has a timer bar that fills up in 4 seconds unless the user selects an answer before that. In the speed mode the game automatically advances to next question after a delay of 600 ms after the user has selected an answer or after the timer bar has filled up.
+There are two separate versions of the question box. Both versions include a 
+box in the middle of the screen. The current question is displayed in the top 
+part of the box and the answer options in the middle part as individual 
+clickable boxes. In normal mode the bottom part of the box has a "Next" 
+button that can be clicked after selecting an answer and it will load the next 
+question. In speed mode the bottom part has a timer bar that fills up in 4 
+seconds unless the user selects an answer before that. In the speed mode the 
+game automatically advances to next question after a delay of 600 ms after the 
+user has selected an answer or after the timer bar has filled up.
+![normal mode](https://github.com/mikkoluukko/vue-trivia-app/blob/master/readme-images/normal-mode.png)
+
+![speed mode](https://github.com/mikkoluukko/vue-trivia-app/blob/master/readme-images/speed-mode.png)
 
 ### Score Screen
-The score screen is displayed after all the questions have been gone through. In the score screen the user's final score is displayed along with a table of all the questions, the user's chosen answers and the correct answers to them.
+The score screen is displayed after all the questions have been gone through. 
+In the score screen the user's final score is displayed along with a table of 
+all the questions, the user's chosen answers and the correct answers to them.
+![score screen](https://github.com/mikkoluukko/vue-trivia-app/blob/master/readme-images/score-screen.png)
 
+## Usage
+The completed trivia app can be played at [https://vue-trivia-app.vercel.app/](https://vue-trivia-app.vercel.app/)
 
-## Generic Vue app instructions
+## Generic Vue instructions
 
 ### Project setup
 ```
